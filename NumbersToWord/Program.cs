@@ -12,8 +12,13 @@ namespace NumbersToWord
             int theNumber = 15425;  // Number you want to display as word
 
 
+
             int multiplyBy;
+            
+            // Find the max group of 3 
             var maxGroupIndex =  GetArrayIndex(theNumber, out multiplyBy);
+
+            // Get the Array value of each group
             int[] resultOfGroups =  SplitIntoGroupOfThree(maxGroupIndex, theNumber, multiplyBy);
 
             var groupIndex = resultOfGroups.Length;
