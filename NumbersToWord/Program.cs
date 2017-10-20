@@ -31,7 +31,8 @@ namespace NumbersToWord
             {
                 foreach (var groupNumber in resultOfGroups)
                 {
-                    Display(groupNumber, groupIndex);
+                    SetNumberToWord(groupNumber, groupIndex);
+                    SetGroupSuffix(groupIndex);
                     groupIndex -= 1;
                 }
             }
@@ -41,8 +42,34 @@ namespace NumbersToWord
             Console.ReadKey();
         }
 
-      
-        private static void Display(int number, int groupIndex)
+        private static void SetGroupSuffix(int groupIndex)
+        {
+            switch (groupIndex)
+            {
+                case 7:
+                    _displayNumberToWord.Append("sextillion");
+                    break;
+                case 6:
+                    _displayNumberToWord.Append("quintillion");
+                    break;
+                case 5:
+                    _displayNumberToWord.Append("quadrillion");
+                    break;
+                case 4:
+                    _displayNumberToWord.Append("trillion");
+                    break;
+                case 3:
+                    _displayNumberToWord.Append("billion");
+                    break;
+                case 2:
+                    _displayNumberToWord.Append("thousand");
+                    break;
+            }
+            _displayNumberToWord.Append(" ");
+        }
+
+
+        private static void SetNumberToWord(int number, int groupIndex)
         {
             var temp = number;
 
@@ -71,29 +98,7 @@ namespace NumbersToWord
 
             }
 
-            switch (groupIndex)
-            {
-                case 7:
-                    _displayNumberToWord.Append("sextillion");
-                    break;
-                case 6:
-                    _displayNumberToWord.Append("quintillion");
-                    break;
-                case 5:
-                    _displayNumberToWord.Append("quadrillion");
-                    break;
-                case 4:
-                    _displayNumberToWord.Append("trillion");
-                    break;
-                case 3:
-                    _displayNumberToWord.Append("billion");
-                    break;
-                case 2:
-                    _displayNumberToWord.Append("thousand");
-                    break;
-            }
 
-            _displayNumberToWord.Append(" ");
         }
 
         private static int GetArrayIndex(int number, out int multiplyBy)
@@ -188,14 +193,14 @@ namespace NumbersToWord
                     strNumber = "nineteen";
                     break;
                 default:
-                    strNumber = GreaterThen19(number);
+                    strNumber = TranslateNumberGreaterThen19(number);
                     break;
             }
 
             return strNumber;
         }
 
-        private static string GreaterThen19(int number)
+        private static string TranslateNumberGreaterThen19(int number)
         {
             var strNumber = "";
 
